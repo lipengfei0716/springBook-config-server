@@ -1,0 +1,38 @@
+server:
+  port: 8099
+spring:
+  application:
+    name: config_server
+  cloud:
+    bus:
+      trace:
+        enabled: true
+    config:
+      server:
+        git:
+          uri: https://github.com/lipengfei0716/spring_config_all.git  # git仓库的地址
+          searchPaths: config_info_all                                # git仓库地址下的相对地址，可以配置多个，用,分割
+          #basedir: config-repo
+          username: lipengfei0716@163.com                                        # git仓库的账号
+          password: lipf0716
+        bootstrap: true                                        # git仓库的密码                                                  #分支
+
+  rabbitmq:
+    host: 192.168.1.132
+    port: 5672
+    username: lpf
+    password: 123456
+    virtual-host: /zy_vhosts
+
+# 注册中心配置
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8100/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh,health
